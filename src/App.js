@@ -6,6 +6,7 @@ import "shaka-player/dist/controls.css";
 import { NFTStorage, File, Blob } from "nft.storage";
 
 function App() {
+  // livepeer implementation
   const Livepeer = require("livepeer-nodejs");
   const apiKey = process.env.REACT_APP_LIVEPEER_API_KEY;
   const livepeerObject = new Livepeer(apiKey);
@@ -73,6 +74,7 @@ function App() {
       if (streamUrl === "") alert("stream is currently processing");
   };
 
+  // nftport implementation
   const mintStream = async (e) => {
       e.preventDefault();
       if (streamUrl === "") {
