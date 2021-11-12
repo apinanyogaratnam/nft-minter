@@ -9,7 +9,7 @@ function App() {
   const apiKey = process.env.REACT_APP_LIVEPEER_API_KEY;
   const livepeerObject = new Livepeer(apiKey);
   const [data, setData] = useState(null);
-  const [streamUrl, setStreamUrl] = useState("https://mdw-cdn.livepeer.com/recordings/2bff43c1-4d2b-447e-b1f0-3cffa75cc0d9/source.mp4");
+  const [streamUrl, setStreamUrl] = useState(null);
   const [showButton, setShowButton] = useState(false);
 
   const [nameOfNft, setNameOfNft] = useState("");
@@ -84,6 +84,8 @@ function App() {
         alert("No stream detected");
         return;
       }
+
+      alert("Stream is being minted");
 
       const nftPortApiKey = process.env.REACT_APP_NFT_PORT_API_KEY;
       const urlToMint = "https://api.nftport.xyz/v0/mints/easy/urls"
