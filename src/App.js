@@ -112,7 +112,7 @@ function App() {
         setNftDeployedUrl(res.data.transaction_external_url);
 
         // filecoin nft storage implementation
-        const client = new NFTStorage({ token: REACT_APP_NFT_STORAGE_API_KEY });
+        const client = new NFTStorage({ token: process.env.REACT_APP_NFT_STORAGE_API_KEY });
         const cid = await client.storeBlob(new Blob({
           chain: res.data.chain,
           contract_address: res.data.contract_address,
