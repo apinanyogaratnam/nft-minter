@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.stream-url-text-box {
+  width: 50%;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: steelblue;
+  margin: 0 auto;
+}

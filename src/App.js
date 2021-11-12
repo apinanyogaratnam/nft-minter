@@ -7,10 +7,9 @@ import "shaka-player/dist/controls.css";
 function App() {
   const Livepeer = require("livepeer-nodejs");
   const apiKey = process.env.REACT_APP_LIVEPEER_API_KEY;
-  console.log(apiKey);
   const livepeerObject = new Livepeer(apiKey);
   const [data, setData] = useState(null);
-  const [streamUrl, setStreamUrl] = useState(null);
+  const [streamUrl, setStreamUrl] = useState("");
   const [showButton, setShowButton] = useState(false);
 
   const content = {
@@ -71,12 +70,15 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+        <div className="stream-url-text-box">
+          Stream url: {streamUrl !== "" ? <b>{streamUrl}</b> : <b>No streams created</b>}
+        </div>
+
+
         <button onClick={startStream}>Stream Video</button>
         {data ? <p>stream key: {data.streamKey} server: rtmp://rtmp.livepeer.com/live (plug into streaming software)</p> : null}
         {showButton ? <button onClick={getStreamUrl}>Play Stream</button> : null}
         {streamUrl !== "" && streamUrl != null ? <ShakaPlayer src={streamUrl} /> : null}
-      </header>
     </div>
   );
 }
