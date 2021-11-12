@@ -128,7 +128,7 @@ function App() {
         {showButton ? <button onClick={getStreamUrl}>Play Stream</button> : null}
         <br /><br />
         <div className="video-container">
-          {streamUrl !== "" && streamUrl != null ? <ShakaPlayer src={streamUrl} /> : null}
+          {streamUrl !== "" && streamUrl != null ? <ShakaPlayer src={streamUrl} /> : <h3>video will appear here</h3>}
         </div>
         <br /><br />
 

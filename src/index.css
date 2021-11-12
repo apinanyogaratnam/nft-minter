@@ -17,15 +17,32 @@ code {
   border-radius: 20px;
   border-style: solid;
   border-color: steelblue;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .video-container {
   width: 50%;
   height: 30%;
+  min-width: 500px;
+  min-height: 300px;
+
   margin: 0 auto;
   border-color: steelblue;
   border-style: solid;
   border-radius: 20px;
   overflow: hidden;
+}
+
+button {
+  border-radius: 20px;
+  border-style: solid;
+  border-color: steelblue;
+  background-color: steelblue;
+  color: white;
+  margin: 10px auto;
+}
+
+button:hover {
+  background-color: #0074d9;
+  color: white;
 }
