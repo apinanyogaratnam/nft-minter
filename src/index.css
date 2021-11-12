@@ -19,3 +19,13 @@ code {
   border-color: steelblue;
   margin: 0 auto;
 }
+
+.video-container {
+  width: 50%;
+  height: 30%;
+  margin: 0 auto;
+  border-color: steelblue;
+  border-style: solid;
+  border-radius: 20px;
+  overflow: hidden;
+}

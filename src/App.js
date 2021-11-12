@@ -9,8 +9,14 @@ function App() {
   const apiKey = process.env.REACT_APP_LIVEPEER_API_KEY;
   const livepeerObject = new Livepeer(apiKey);
   const [data, setData] = useState(null);
-  const [streamUrl, setStreamUrl] = useState("");
+  const [streamUrl, setStreamUrl] = useState("https://mdw-cdn.livepeer.com/recordings/2bff43c1-4d2b-447e-b1f0-3cffa75cc0d9/source.mp4");
   const [showButton, setShowButton] = useState(false);
+
+  const [nameOfNft, setNameOfNft] = useState("");
+  const [descriptionOfNft, setDescriptionOfNft] = useState("");
+  const [address, setAddress] = useState("");
+
+  const [nftDeployedUrl, setNftDeployedUrl] = useState("");
 
   const content = {
       "name": "test_stream", 
@@ -68,17 +74,94 @@ function App() {
       if (streamUrl === "") alert("stream is currently processing");
   };
 
+  const mintStream = async (e) => {
+      e.preventDefault();
+      if (streamUrl === "") {
+        alert("Stream is currently processing");
+        return;
+      }
+      if (streamUrl === null) {
+        alert("No stream detected");
+        return;
+      }
+
+      const nftPortApiKey = process.env.REACT_APP_NFT_PORT_API_KEY;
+      const urlToMint = "https://api.nftport.xyz/v0/mints/easy/urls"
+      const body = {
+        "chain": "rinkeby",
+        "name": nameOfNft, // update to user's preferred nft name
+        "description": descriptionOfNft, // update to user's preferred nft description
+        "file_url": streamUrl,
+        "mint_to_address": address // update to user's preferred address
+      };
+
+      const auth = {
+        headers: {
+          Authorization: nftPortApiKey
+        }
+      };
+
+      const res = await axios.post(urlToMint, body, auth);
+      
+      if (res.status === 200) {
+        alert("Successfully minted stream");
+        setNameOfNft("");
+        setDescriptionOfNft("");
+        setAddress("");
+        setNftDeployedUrl(res.data.transaction_external_url);
+      } else {
+        alert("Error minting stream");
+      }
+  }
+
   return (
     <div className="App">
         <div className="stream-url-text-box">
-          Stream url: {streamUrl !== "" ? <b>{streamUrl}</b> : <b>No streams created</b>}
+          Stream url: {streamUrl !== "" && streamUrl !== null ? <b>{streamUrl}</b> : streamUrl === "" ? <b>stream currently processing</b> : <b>No streams created</b>}
         </div>
 
-
+        <br />
         <button onClick={startStream}>Stream Video</button>
         {data ? <p>stream key: {data.streamKey} server: rtmp://rtmp.livepeer.com/live (plug into streaming software)</p> : null}
         {showButton ? <button onClick={getStreamUrl}>Play Stream</button> : null}
-        {streamUrl !== "" && streamUrl != null ? <ShakaPlayer src={streamUrl} /> : null}
+        <br /><br />
+        <div className="video-container">
+          {streamUrl !== "" && streamUrl != null ? <ShakaPlayer src={streamUrl} /> : null}
+        </div>
+        <br /><br />
+
+        {
+          nftDeployedUrl !== "" ? <a href={nftDeployedUrl} target="_blank">View NFT</a> : null
+        }
+
+        <br /><br />
+        <form>
+          <input
+            value={nameOfNft}
+            type="text"
+            placeholder="Name of NFT"
+            onChange={(e) => setNameOfNft(e.target.value)}
+            name="nameOfNft"
+            required
+            />
+          <input
+            value={descriptionOfNft}
+            type="text"
+            placeholder="Description of NFT"
+            onChange={(e) => setDescriptionOfNft(e.target.value)}
+            name="descriptionOfNft"
+            required
+            />
+          <input
+            value={address}
+            type="text"
+            placeholder="Wallet Address"
+            onChange={(e) => setAddress(e.target.value)}
+            name="address"
+            required
+            />
+          <button onClick={mintStream}>Mint Video</button>
+        </form>
     </div>
   );
 }
