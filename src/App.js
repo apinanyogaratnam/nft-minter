@@ -48,7 +48,6 @@ function App() {
 
   const startStream = () => {
       livepeerObject.Stream.create(content).then((res) => {
-          console.log(res);
           setData(res);
           setShowButton(true);
       });
@@ -68,7 +67,6 @@ function App() {
           return;
       }
       
-      console.log(listOfAllStreams);
       setStreamUrl(listOfAllStreams.data[0].mp4Url);
 
       if (streamUrl === "") alert("stream is currently processing");
