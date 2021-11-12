@@ -1,5 +1,4 @@
 import './App.css';
-import Livepeer from './Livepeer';
 import React, { useState } from 'react';
 import axios from 'axios';
 import ShakaPlayer from 'shaka-player-react';
