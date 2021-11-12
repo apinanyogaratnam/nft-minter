@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import ShakaPlayer from 'shaka-player-react';
 import "shaka-player/dist/controls.css";
+import { NFTStorage, File, Blob } from "nft.storage";
 
 function App() {
   const Livepeer = require("livepeer-nodejs");
@@ -109,6 +110,17 @@ function App() {
         setDescriptionOfNft("");
         setAddress("");
         setNftDeployedUrl(res.data.transaction_external_url);
+
+        // filecoin nft storage implementation
+        const client = new NFTStorage({ token: REACT_APP_NFT_STORAGE_API_KEY });
+        const cid = await client.storeBlob(new Blob({
+          chain: res.data.chain,
+          contract_address: res.data.contract_address,
+          transaction_hash: res.data.transaction_hash,
+          description: res.data.description,
+          address: res.data.mint_to_address
+        }));
+        console.log(cid);
       } else {
         alert("Error minting stream");
       }
