@@ -20,6 +20,8 @@ function App() {
 
   const [nftDeployedUrl, setNftDeployedUrl] = useState("");
 
+  const [covalentData, setCovalentData] = useState(null);
+
   const content = {
       "name": "test_stream", 
       "profiles": [
@@ -115,17 +117,26 @@ function App() {
 
         // filecoin nft storage implementation
         const client = new NFTStorage({ token: process.env.REACT_APP_NFT_STORAGE_API_KEY });
-        const cid = await client.storeBlob(new Blob({
+        const cid = await client.storeBlob(new Blob([{
           chain: res.data.chain,
           contract_address: res.data.contract_address,
           transaction_hash: res.data.transaction_hash,
           description: res.data.description,
           address: res.data.mint_to_address
-        }));
-        console.log(cid);
+        }]));
+
+        // covalent data implementation
+        const covalent = "https://api.covalenthq.com/v1/1/address/" + address + "/transactions_v2/?quote-currency=USD&format=JSON&block-signed-at-asc=false&no-logs=false&key=" + process.env.REACT_APP_COVALENT_API_KEY;
+        const covalentRes = await axios.get(covalent);
+        setCovalentData(covalentRes.data.data);
       } else {
         alert("Error minting stream");
       }
+  }
+
+  const copyData = () => {
+    navigator.clipboard.writeText(JSON.stringify(covalentData));
+    alert("Copied data to clipboard");
   }
 
   return (
@@ -176,6 +187,13 @@ function App() {
             />
           <button onClick={mintStream}>Mint Video</button>
         </form>
+
+        {
+          covalentData !== null ? <p>{JSON.stringify(covalentData)}</p> : null
+        }
+        {
+          covalentData !== null ? <button onClick={copyData}>Copy Data</button> : null
+        }
     </div>
   );
 }
