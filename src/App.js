@@ -136,7 +136,6 @@ function App() {
 
   const copyData = () => {
     navigator.clipboard.writeText(JSON.stringify(covalentData));
-    alert("Copied data to clipboard");
   }
 
   return (
@@ -192,7 +191,7 @@ function App() {
           covalentData !== null ? <p>{JSON.stringify(covalentData)}</p> : null
         }
         {
-          covalentData !== null ? <button onClick={copyData}>Copy Data</button> : null
+          covalentData !== null ? <button onClick={() => copyData()}>Copy Data</button> : null
         }
     </div>
   );
