@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/nft-minter/static/css/main.c584065d.chunk.css",
+    "main.js": "/nft-minter/static/js/main.34055d69.chunk.js",
+    "main.js.map": "/nft-minter/static/js/main.34055d69.chunk.js.map",
+    "runtime-main.js": "/nft-minter/static/js/runtime-main.5e6992b2.js",
+    "runtime-main.js.map": "/nft-minter/static/js/runtime-main.5e6992b2.js.map",
+    "static/css/2.932f8366.chunk.css": "/nft-minter/static/css/2.932f8366.chunk.css",
+    "static/js/2.c3b975e8.chunk.js": "/nft-minter/static/js/2.c3b975e8.chunk.js",
+    "static/js/2.c3b975e8.chunk.js.map": "/nft-minter/static/js/2.c3b975e8.chunk.js.map",
+    "static/js/3.6b70e4d1.chunk.js": "/nft-minter/static/js/3.6b70e4d1.chunk.js",
+    "static/js/3.6b70e4d1.chunk.js.map": "/nft-minter/static/js/3.6b70e4d1.chunk.js.map",
+    "index.html": "/nft-minter/index.html",
+    "static/css/2.932f8366.chunk.css.map": "/nft-minter/static/css/2.932f8366.chunk.css.map",
+    "static/css/main.c584065d.chunk.css.map": "/nft-minter/static/css/main.c584065d.chunk.css.map",
+    "static/js/2.c3b975e8.chunk.js.LICENSE.txt": "/nft-minter/static/js/2.c3b975e8.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5e6992b2.js",
+    "static/css/2.932f8366.chunk.css",
+    "static/js/2.c3b975e8.chunk.js",
+    "static/css/main.c584065d.chunk.css",
+    "static/js/main.34055d69.chunk.js"
+  ]
+}
