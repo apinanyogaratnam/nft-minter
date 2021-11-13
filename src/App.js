@@ -4,12 +4,8 @@ import axios from 'axios';
 import ShakaPlayer from 'shaka-player-react';
 import "shaka-player/dist/controls.css";
 import { NFTStorage, File, Blob } from "nft.storage";
-import cors from 'cors';
-import express from 'express';
-var app = express();
 
 function App() {
-  app.use(cors());
   // livepeer implementation
   const Livepeer = require("livepeer-nodejs");
   const apiKey = process.env.REACT_APP_LIVEPEER_API_KEY;
