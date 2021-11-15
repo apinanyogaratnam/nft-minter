@@ -22,6 +22,8 @@ function App() {
 
   const [covalentData, setCovalentData] = useState(null);
 
+  const [ceramicStream, setCeramicStream] = useState(null);
+
   const content = {
       "name": "test_stream", 
       "profiles": [
@@ -112,7 +114,7 @@ function App() {
         alert("Successfully minted stream");
         setNameOfNft("");
         setDescriptionOfNft("");
-        setAddress("");
+        // setAddress("");
         setNftDeployedUrl(res.data.transaction_external_url);
 
         // filecoin nft storage implementation
@@ -136,6 +138,14 @@ function App() {
 
   const copyData = () => {
     navigator.clipboard.writeText(JSON.stringify(covalentData));
+  }
+
+  const ceramic = () => {
+    import CeramicClient from '@ceramicnetwork/http-client';
+    const API_URL = "https://gateway-clay.ceramic.network";
+    const ceramic = new CeramicClient(API_URL);
+
+    const stream = await ceramic.loadStream(ceramicStream);
   }
 
   return (
