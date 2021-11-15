@@ -140,6 +140,7 @@ function App() {
     navigator.clipboard.writeText(JSON.stringify(covalentData));
   }
 
+  // ceramic reading a stream
   const ceramic = () => {
     import CeramicClient from '@ceramicnetwork/http-client';
     const API_URL = "https://gateway-clay.ceramic.network";
